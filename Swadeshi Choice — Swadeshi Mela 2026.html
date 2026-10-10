@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Mukta:wght@500;600;700;800&display=swap" rel="stylesheet">
+<title>Swadeshi Choice — Swadeshi Mela 2026</title>
+<style>
+:root{
+  --maroon:#7a1f2b;--deepmaroon:#54121b;--saffron:#f4812e;--gold:#d6a419;--leaf:#3f6b3a;
+  --ink:#3b1f12;--muted:#8a7757;--line:#d6a419;--bg:#f6ead0;--panel:#fffdf6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241209;--panel:#3a2012;--ink:#f8ecd8;--muted:#cbb892}}
+:root[data-theme="dark"]{--bg:#241209;--panel:#3a2012;--ink:#f8ecd8;--muted:#cbb892}
+*{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:Mukta,system-ui,sans-serif;
+  background-image:repeating-radial-gradient(circle at 0 0,#d6a41922 0 2px,transparent 2px 22px);background-size:28px 28px}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--maroon);outline-offset:2px}
+.app{width:min(430px,100%);min-height:100%;margin:auto;padding:clamp(14px,3vw,22px);display:flex;flex-direction:column;gap:14px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(150deg,#7a1f2b 0%,#b3401f 55%,#d6a419 100%);
+  border:4px solid var(--gold);border-radius:22px;padding:30px 18px 20px;text-align:center;color:#fff;box-shadow:0 10px 0 var(--deepmaroon),0 18px 30px rgba(60,10,10,.3)}
+.torana{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-around;font-size:1.1rem;padding-top:2px}
+.torana span{animation:sway 2.6s ease-in-out infinite}
+.wheel{margin:0 auto 10px;width:66px;height:66px;border:3px solid var(--gold);border-radius:50%;
+  background:var(--deepmaroon);color:var(--gold);display:grid;place-items:center;font-size:34px;box-shadow:0 0 0 4px #d6a41955;animation:spin 14s linear infinite}
+.kicker{display:inline-block;background:var(--gold);color:var(--deepmaroon);border-radius:99px;padding:5px 14px;font-size:.7rem;font-weight:700;letter-spacing:.12em}
+h1{font-family:"Yatra One",cursive;font-weight:400;font-size:clamp(1.9rem,7vw,3.1rem);letter-spacing:.01em;text-shadow:0 3px 0 var(--deepmaroon);margin:12px 0 6px;color:var(--gold)}
+.hindi{color:#fff;font-size:clamp(1rem,3vw,1.2rem);font-weight:700}
+.sub{color:#fdf0d8;font-weight:600;margin:6px 0 0}
+.best{margin-top:10px;color:var(--deepmaroon);background:var(--gold);display:inline-block;padding:4px 14px;border-radius:99px;font-size:.82rem;font-weight:700}
+.points{display:flex;gap:12px;margin-top:18px}.point{flex:1;background:#ffffff1c;border:2px solid #d6a41977;border-radius:16px;padding:10px 6px}
+.point strong{display:block;font-size:1.7rem;color:var(--gold)}.point small{font-weight:600}
+.primary,.secondary{border:0;border-radius:14px;padding:15px 18px;font-weight:800;letter-spacing:.02em;transition:transform .12s,box-shadow .12s}
+.primary{background:linear-gradient(160deg,#f0c04a,var(--gold));color:var(--deepmaroon);box-shadow:0 5px 0 #8a6a12}
+.primary:hover{transform:translateY(-2px)}.primary:active{transform:translateY(3px);box-shadow:0 2px 0 #8a6a12}
+.hero .primary{width:100%;margin-top:18px;font-size:1.1rem}
+.secondary{background:var(--panel);color:var(--maroon);border:2px solid var(--gold)}
+.instructions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.instruction{background:var(--panel);border:2px solid var(--gold);border-radius:16px;padding:12px 10px;font-size:.85rem}
+.instruction .ico{display:block;font-size:1.6rem;margin-bottom:5px}.instruction strong{color:var(--maroon)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.eyebrow{font-size:.72rem;letter-spacing:.07em;font-weight:800;color:var(--muted)}
+.scorebox{background:radial-gradient(circle,#f0c04a,var(--gold));border:3px solid var(--deepmaroon);padding:7px 16px;border-radius:50%;box-shadow:0 4px 0 #8a6a12;min-width:68px;text-align:center}
+.scorebox small{color:var(--deepmaroon);font-weight:800;display:block;font-size:.6rem}.scorebox strong{font-size:1.3rem;color:var(--deepmaroon)}
+.soundbtn{background:var(--panel);border:2px solid var(--gold);border-radius:12px;width:40px;height:40px;font-size:1.1rem;display:grid;place-items:center}
+.progress{height:13px;border:2px solid var(--gold);border-radius:99px;background:#fff;overflow:hidden}
+.bar{height:100%;background:linear-gradient(90deg,var(--maroon),var(--saffron),var(--gold));width:10%;transition:width .35s cubic-bezier(.2,.8,.2,1)}
+.question{text-align:center;font-size:clamp(1.35rem,5vw,1.9rem);font-weight:800;margin:6px 0 0;color:var(--maroon)}
+.hint{text-align:center;color:var(--muted);font-weight:600;margin:-2px 0 0}
+.streak{text-align:center;font-weight:800;color:var(--saffron);min-height:1.2em}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.product{position:relative;border:2px solid var(--gold);background:var(--panel);border-radius:18px;padding:11px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;overflow:hidden;
+  box-shadow:0 5px 14px rgba(90,40,10,.18);transition:transform .16s,box-shadow .16s}
+.product:hover:not(:disabled){transform:translateY(-4px);box-shadow:0 10px 20px rgba(90,40,10,.25)}
+.product:disabled{cursor:default}
+.cardart{position:relative;width:100%;height:clamp(118px,30vw,168px);border-radius:50%;display:grid;place-items:center;padding:10px;
+  background:radial-gradient(circle,#fff 55%,hsl(var(--h) 55% 90%) 100%);border:2px dashed var(--gold);transition:transform .25s}
+.cardart:before{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px dotted #d6a41988;animation:spin 20s linear infinite}
+.cardart svg{width:auto;height:84%;max-width:84%;position:relative}
+.product.selected .cardart{transform:scale(1.06)}
+.name{font-size:clamp(.95rem,2.4vw,1.05rem);font-weight:800;color:var(--maroon)}
+.tap{background:var(--bg);color:var(--muted);border-radius:99px;padding:5px 10px;font-weight:700;font-size:.72rem;border:1px solid var(--gold)}
+.origin{font-size:.72rem;font-weight:700;color:var(--muted)}
+.product.selected.good{border-color:var(--leaf);box-shadow:0 0 0 3px #3f6b3a44}
+.product.selected.bad{border-color:var(--maroon);box-shadow:0 0 0 3px #7a1f2b33}
+.product.selected.good .tap{background:var(--leaf);color:#fff;border-color:var(--leaf)}.product.selected.bad .tap{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+.feedback{border:2px solid var(--gold);border-radius:18px;padding:15px;font-weight:600;background:var(--panel)}
+.feedback.good{border-color:var(--leaf)}.feedback.bad{border-color:var(--maroon)}
+.feedback h3{margin:0 0 4px;font-size:1.1rem;font-weight:800}.feedback.good h3{color:var(--leaf)}.feedback.bad h3{color:var(--maroon)}
+.feedback p{margin:3px 0;color:var(--ink)}.feedback small{color:var(--muted)}
+.actions{display:grid;gap:9px;position:sticky;bottom:0;z-index:6;background:var(--bg);padding-top:10px}.full{width:100%}.exit{border:0;background:transparent;color:var(--muted);padding:8px;font-weight:700}
+.stickycta{position:sticky;bottom:0;z-index:6;background:var(--bg);padding-top:10px;margin-top:auto}
+@media(min-width:560px){
+ body{display:flex;justify-content:center;align-items:flex-start;padding:28px 12px}
+}
+.result{position:relative;overflow:hidden;background:linear-gradient(150deg,#7a1f2b,#54121b);border:4px solid var(--gold);border-radius:22px;padding:28px 18px;text-align:center;color:#fff;box-shadow:0 10px 0 #2e0c10}
+.result .trophy{display:inline-grid;place-items:center;width:78px;height:78px;background:radial-gradient(circle,#f0c04a,var(--gold));border-radius:50%;font-size:2.6rem;box-shadow:0 5px 0 #8a6a12}
+.result h2{font-family:"Yatra One",cursive;font-weight:400;margin:12px 0 6px;color:var(--gold)}
+.finalscore{font-size:2.6rem;color:var(--gold);font-weight:800;margin:4px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.stat{background:#ffffff1a;border:2px solid #d6a41966;border-radius:15px;padding:12px}.stat strong{display:block;font-size:1.35rem;color:var(--gold)}
+.remember{background:var(--panel);border:2px solid var(--gold);border-radius:15px;padding:14px;line-height:1.5}
+.remember strong{display:block;color:var(--maroon);margin-bottom:3px}
+footer{margin-top:auto;padding-top:10px;text-align:center;color:var(--muted);font-weight:700;font-size:.74rem}
+.hidden{display:none!important}
+.petal{position:fixed;top:-15px;width:12px;height:12px;border-radius:50% 0 50% 0;z-index:99;pointer-events:none;animation:petal-fall 1.9s ease-in forwards}
+.score-pop{animation:score-pop .3s ease-out}@keyframes score-pop{50%{transform:scale(1.25)}}
+.flash-bad{animation:flashbad .35s ease-out}@keyframes flashbad{0%{filter:brightness(1)}30%{filter:sepia(.2) brightness(1.05)}100%{filter:brightness(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+@keyframes petal-fall{to{transform:translateY(110vh) translateX(20px) rotate(400deg);opacity:.15}}
+@keyframes streakpop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+.streak.show{animation:streakpop .35s ease-out}
+@media(max-width:560px){.instructions{grid-template-columns:1fr}.instruction{display:flex;align-items:center;gap:10px;padding:9px 11px}.instruction .ico{margin:0;min-width:30px}.torana{font-size:.9rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.hud{display:flex;align-items:center;justify-content:space-between;gap:8px;position:sticky;top:0;z-index:6;background:var(--bg);padding:6px 0 8px;margin:-6px 0 0}
+.levelribbon{background:var(--maroon);color:var(--gold);font-weight:800;font-size:.78rem;letter-spacing:.06em;padding:8px 14px 8px 10px;border-radius:0 10px 10px 0;position:relative;box-shadow:0 3px 0 var(--deepmaroon)}
+.levelribbon:before{content:"";position:absolute;left:-10px;top:0;border-style:solid;border-width:0 10px 10px 0;border-color:transparent var(--deepmaroon) transparent transparent}
+.scorebox{display:flex;align-items:center;gap:6px}.scorebox .coin{font-size:1.2rem;filter:drop-shadow(0 2px 0 #8a6a12)}
+.catchip{display:inline-block;background:var(--panel);border:2px solid var(--gold);color:var(--maroon);font-weight:800;font-size:.72rem;letter-spacing:.08em;padding:5px 12px;border-radius:99px;margin-top:4px}
+.cardwrap{position:relative}
+.vsbadge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--maroon);color:var(--gold);display:grid;place-items:center;font-weight:800;font-size:.8rem;border:3px solid var(--gold);box-shadow:0 4px 10px rgba(0,0,0,.35);z-index:2;animation:vspulse 1.8s ease-in-out infinite}
+@keyframes vspulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
+.primary{position:relative;overflow:hidden}
+.primary:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,#ffffffaa,transparent);transform:skewX(-20deg);animation:sheen 2.6s ease-in-out infinite}
+@keyframes sheen{0%{left:-60%}50%,100%{left:120%}}
+.hero .primary{animation:glowring 1.8s ease-in-out infinite}
+@keyframes glowring{0%,100%{box-shadow:0 5px 0 #8a6a12,0 0 0 0 #ffd23f55}50%{box-shadow:0 5px 0 #8a6a12,0 0 12px 6px #ffd23f55}}
+.lantern{position:absolute;top:-6px;font-size:1.6rem;animation:lanternsway 2.4s ease-in-out infinite;filter:drop-shadow(0 0 6px #ffd23f99)}
+.lantern.l1{left:8%}.lantern.l2{right:8%;animation-delay:.6s}
+@keyframes lanternsway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.starrow{display:flex;justify-content:center;gap:6px;margin:8px 0 2px;font-size:1.7rem}
+.starrow span{filter:grayscale(1);opacity:.4;transform:scale(.6);display:inline-block;transition:filter .25s,opacity .25s}
+.starrow span.lit{filter:none;opacity:1;animation:starpop .4s ease-out forwards}
+@keyframes starpop{0%{transform:scale(.4) rotate(-20deg)}70%{transform:scale(1.2) rotate(8deg)}100%{transform:scale(1) rotate(0)}}
+</style>
+</head>
+<body>
+<main class="app">
+<section id="intro">
+  <div class="hero">
+    <div class="torana"><span>🍃</span><span>🌼</span><span>🍃</span><span>🌼</span><span>🍃</span><span>🌼</span><span>🍃</span></div>
+    <span class="lantern l1">🪔</span><span class="lantern l2">🪔</span>
+    <div class="wheel" aria-hidden="true">✺</div>
+    <div class="kicker">स्वदेशी मेला 2026</div>
+    <h1>SWADESHI CHOICE</h1>
+    <div class="hindi">आपकी पसंद, आपका स्वदेशी स्कोर!</div>
+    <p class="sub">Everyday choices. Indian brands. A festive challenge.</p>
+    <div class="best" id="bestLine" style="display:none"></div>
+    <div class="points">
+      <div class="point"><strong>+10</strong><small>Swadeshi choice</small></div>
+      <div class="point"><strong>−5</strong><small>Foreign-origin choice</small></div>
+    </div>
+    <button class="primary" id="play">▶ &nbsp; आरंभ करें · PLAY NOW</button>
+  </div>
+  <div class="instructions">
+    <div class="instruction"><span class="ico">🪔</span><div><strong>1. Make your choice</strong><br>Answer 10 everyday shopping questions.</div></div>
+    <div class="instruction"><span class="ico">📜</span><div><strong>2. Discover the origin</strong><br>Instant feedback on where each brand is from.</div></div>
+    <div class="instruction"><span class="ico">🏆</span><div><strong>3. Build your streak</strong><br>Chain Swadeshi picks for bonus points.</div></div>
+  </div>
+  <div class="stickycta"><button class="primary full" id="playBottom">▶ &nbsp; आरंभ करें · PLAY NOW</button></div>
+</section>
+
+<section id="game" class="hidden">
+  <div class="hud">
+    <div class="levelribbon" id="roundLabel">LEVEL 1/10</div>
+    <button class="soundbtn" id="soundBtn" aria-label="Toggle sound">🔊</button>
+    <div class="scorebox"><span class="coin">🪙</span><strong id="score">0</strong></div>
+  </div>
+  <div class="progress"><div id="bar" class="bar"></div></div>
+  <div class="catchip" id="category">DAIRY</div>
+  <h2 id="question" class="question"></h2><p class="hint">Which one would you choose?</p>
+  <div id="streak" class="streak"></div>
+  <div class="cardwrap"><div id="cards" class="cards"></div><div class="vsbadge">VS</div></div>
+  <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+  <div class="actions"><button id="next" class="primary full hidden">NEXT QUESTION →</button><button id="exit" class="exit">Exit game</button></div>
+</section>
+
+<section id="result" class="hidden">
+  <div class="result">
+    <div class="trophy">🏆</div><div class="kicker">LEVEL COMPLETE</div><h2 id="rank">Swadeshi Explorer</h2>
+    <div class="starrow" id="starRow"><span>⭐</span><span>⭐</span><span>⭐</span></div>
+    <p>You've completed all 10 shopping choices.</p>
+    <hr style="border:0;border-top:1px dashed #d6a41988">
+    <div style="color:#fdf0d8;font-size:.8rem">YOUR FINAL SCORE</div><div id="finalScore" class="finalscore">0</div>
+    <div class="stats"><div class="stat"><strong id="correctStat">0/10</strong><small>Swadeshi choices</small></div><div class="stat"><strong id="rateStat">0%</strong><small>Swadeshi choice rate</small></div></div>
+  </div>
+  <div class="remember"><strong>Remember</strong>Knowing where products come from can help you make informed shopping choices. Explore Indian brands and local makers at Swadeshi Mela!</div>
+  <div class="stickycta"><button id="again" class="primary full">↻ &nbsp; फिर से खेलें · PLAY AGAIN</button></div>
+</section>
+<footer>SWADESHI MELA 2026 · स्वावलम्बन की ओर... भारत</footer>
+<!-- Background music placeholder: set src="your-file-or-data-uri" to enable. Left empty for now. -->
+<audio id="bgMusic" loop preload="none"></audio>
+</main>
+<script>
+// Illustrated packaging — original shapes in a warm traditional palette, no real photos/logos needed.
+function pkg(type,h){
+ const b=`hsl(${h} 55% 48%)`,l=`hsl(${h} 55% 68%)`,d=`hsl(${h} 55% 30%)`,ink="#3b1f12",sw='stroke="'+ink+'" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"';
+ const shapes={
+  tub:`<path d="M24 46 L96 46 L88 118 Q88 126 80 126 L40 126 Q32 126 32 118 Z" fill="${b}" ${sw}/><ellipse cx="60" cy="46" rx="38" ry="13" fill="${l}" ${sw}/><ellipse cx="60" cy="44" rx="26" ry="7" fill="#fff" opacity=".4"/>`,
+  pack:`<path d="M26 36 L94 36 L88 128 Q88 134 82 134 L38 134 Q32 134 32 128 Z" fill="${b}" ${sw}/><path d="M26 36 L60 16 L94 36 Z" fill="${d}" ${sw}/><rect x="34" y="58" width="52" height="28" rx="6" fill="#fff" opacity=".35"/>`,
+  tube:`<path d="M42 30 L78 30 L78 46 L84 52 L84 122 Q84 130 76 130 L44 130 Q36 130 36 122 L36 52 L42 46 Z" fill="${b}" ${sw}/><rect x="46" y="10" width="28" height="22" rx="7" fill="${d}" ${sw}/><rect x="42" y="62" width="36" height="20" rx="4" fill="#fff" opacity=".35"/>`,
+  pouch:`<path d="M30 48 Q20 48 24 36 Q30 30 38 36 Q44 26 52 36 Q60 26 68 36 Q76 26 84 36 Q92 30 96 38 Q100 48 92 50 L88 126 Q88 134 80 134 L40 134 Q32 134 32 126 Z" fill="${b}" ${sw}/><ellipse cx="60" cy="92" rx="26" ry="16" fill="#fff" opacity=".3"/>`,
+  box:`<rect x="26" y="40" width="68" height="86" rx="8" fill="${b}" ${sw}/><path d="M26 40 L60 24 L94 40" fill="none" ${sw}/><rect x="34" y="62" width="52" height="34" rx="5" fill="#fff" opacity=".35"/>`,
+  speaker:`<rect x="30" y="22" width="60" height="100" rx="14" fill="${b}" ${sw}/><circle cx="60" cy="54" r="16" fill="${d}" ${sw}/><circle cx="60" cy="54" r="7" fill="#fff" opacity=".5"/><circle cx="60" cy="92" r="11" fill="${d}" ${sw}/><circle cx="60" cy="92" r="4" fill="#fff" opacity=".5"/>`,
+  can:`<rect x="28" y="36" width="64" height="86" rx="10" fill="${b}" ${sw}/><ellipse cx="60" cy="36" rx="32" ry="11" fill="${l}" ${sw}/><rect x="52" y="14" width="16" height="14" rx="4" fill="${d}" ${sw}/><rect x="36" y="58" width="48" height="26" rx="5" fill="#fff" opacity=".35"/>`,
+  tag:`<path d="M60 14 L60 30" stroke="${ink}" stroke-width="5"/><path d="M60 30 Q60 18 72 18 Q84 18 84 30" fill="none" ${sw}/><path d="M34 38 L86 38 L96 56 L82 132 L38 132 L24 56 Z" fill="${b}" ${sw}/><circle cx="60" cy="38" r="7" fill="#fff" opacity=".4"/>`,
+  pot:`<path d="M30 54 Q30 42 60 42 Q90 42 90 54 L86 118 Q86 128 76 128 L44 128 Q34 128 34 118 Z" fill="${b}" ${sw}/><ellipse cx="60" cy="54" rx="30" ry="10" fill="${l}" ${sw}/><rect x="4" y="48" width="18" height="10" rx="5" fill="${d}" ${sw}/><rect x="98" y="48" width="18" height="10" rx="5" fill="${d}" ${sw}/><circle cx="60" cy="48" r="6" fill="${d}" ${sw}/>`,
+  bottle:`<path d="M50 14 L70 14 L70 34 L78 46 L78 122 Q78 132 68 132 L52 132 Q42 132 42 122 L42 46 L50 34 Z" fill="${b}" ${sw}/><rect x="48" y="4" width="24" height="14" rx="4" fill="${d}" ${sw}/><rect x="46" y="68" width="28" height="30" rx="6" fill="#fff" opacity=".35"/>`
+ };
+ return `<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">${shapes[type]||shapes.box}</svg>`;
+}
+const questions = [
+ {h:38,type:"tub",q:"Which butter would you prefer to buy?",category:"DAIRY",a:{name:"Amul Butter",sw:true,origin:"🇮🇳 India",why:"Amul is an Indian dairy cooperative brand."},b:{name:"Lurpak Butter",sw:false,origin:"🇩🇰 Denmark",why:"Lurpak is a Danish butter brand."}},
+ {h:28,type:"pack",q:"Which biscuits would you pick for your evening tea?",category:"BISCUITS",a:{name:"Parle-G",sw:true,origin:"🇮🇳 India",why:"Parle is an Indian-origin biscuit brand."},b:{name:"Oreo",sw:false,origin:"🇺🇸 USA",why:"Oreo originated in the United States."}},
+ {h:200,type:"tube",q:"Which toothpaste would you choose for your family?",category:"PERSONAL CARE",a:{name:"Dabur Red",sw:true,origin:"🇮🇳 India",why:"Dabur is an Indian-origin company."},b:{name:"Colgate",sw:false,origin:"🇺🇸 USA",why:"Colgate is an American-origin brand."}},
+ {h:45,type:"pouch",q:"Which snack would you buy for a movie night?",category:"SNACKS",a:{name:"Haldiram's Namkeen",sw:true,origin:"🇮🇳 India",why:"Haldiram's is an Indian-origin snack brand."},b:{name:"Pringles",sw:false,origin:"🇺🇸 USA",why:"Pringles originated in the United States."}},
+ {h:150,type:"box",q:"Which tea would you prefer for your morning cup?",category:"BEVERAGES",a:{name:"Tata Tea",sw:true,origin:"🇮🇳 India",why:"Tata Tea is part of India's Tata Consumer Products."},b:{name:"Lipton",sw:false,origin:"🇬🇧 UK",why:"Lipton originated as a British tea brand."}},
+ {h:265,type:"speaker",q:"Which speaker would you choose for your next party?",category:"ELECTRONICS",a:{name:"boAt",sw:true,origin:"🇮🇳 India",why:"boAt is an Indian-origin consumer electronics brand."},b:{name:"JBL",sw:false,origin:"🇺🇸 USA",why:"JBL originated in the United States."}},
+ {h:30,type:"can",q:"Which paint brand would you consider for your home?",category:"HOME",a:{name:"Asian Paints",sw:true,origin:"🇮🇳 India",why:"Asian Paints is an Indian-origin company."},b:{name:"Dulux",sw:false,origin:"🇳🇱 Netherlands",why:"Dulux is a brand of Dutch-origin AkzoNobel."}},
+ {h:340,type:"tag",q:"Which fashion brand would you choose for an outfit?",category:"CLOTHING",a:{name:"Biba",sw:true,origin:"🇮🇳 India",why:"Biba is an Indian-origin fashion brand."},b:{name:"Zara",sw:false,origin:"🇪🇸 Spain",why:"Zara originated in Spain."}},
+ {h:18,type:"pot",q:"Which kitchen appliance would you consider for your home?",category:"KITCHEN",a:{name:"Prestige",sw:true,origin:"🇮🇳 India",why:"Prestige is an Indian-origin kitchen appliance brand."},b:{name:"Philips",sw:false,origin:"🇳🇱 Netherlands",why:"Philips originated in the Netherlands."}},
+ {h:120,type:"bottle",q:"Which drink would you choose to refresh yourself?",category:"DRINKS",a:{name:"Paper Boat",sw:true,origin:"🇮🇳 India",why:"Paper Boat is an Indian-origin beverage brand."},b:{name:"Coca-Cola",sw:false,origin:"🇺🇸 USA",why:"Coca-Cola originated in the United States."}}
+];
+const $=id=>document.getElementById(id);
+let round=0,score=0,correct=0,choice=null,reverse=false,streak=0,soundOn=true,actx=null;
+try{soundOn=localStorage.getItem("sw_sound")!=="off"}catch(e){}
+try{const b=localStorage.getItem("sw_best_trad");if(b){$("bestLine").textContent="🏅 Best score: "+b;$("bestLine").style.display="inline-block";}}catch(e){}
+function ctx(){if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}return actx}
+function tone(freq,dur,type,vol,delay){
+  if(!soundOn)return;const c=ctx();if(!c)return;
+  try{const t0=c.currentTime+(delay||0);const o=c.createOscillator();const g=c.createGain();o.type=type||"sine";o.frequency.value=freq;
+  o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(vol||.18,t0);g.gain.exponentialRampToValueAtTime(.001,t0+dur);
+  o.start(t0);o.stop(t0+dur+.02);}catch(e){}
+}
+// 8-bit style SFX (square-wave, short, punchy) layered over a soft looping Indian-ambience drone.
+function sGood(){tone(784,.07,"square",.11);tone(1047,.07,"square",.1,.07);tone(1568,.12,"square",.1,.14)}
+function sBad(){tone(196,.08,"square",.1);tone(147,.16,"square",.09,.07)}
+function sWin(){[523,659,784,1047,1319,1568].forEach((f,i)=>tone(f,.13,"square",.11,i*.09))}
+function vibrate(p){try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
+function show(which){["intro","game","result"].forEach(id=>$(id).classList.toggle("hidden",id!==which));}
+let ambience=null;
+// Background music placeholder — add your own track later.
+// Upload an audio file to Claude and ask to wire it in: it'll be embedded as this
+// <audio id="bgMusic"> element's src (see near the end of <body>), looping automatically
+// once Play is tapped, and respecting the existing sound on/off toggle. Nothing plays until then.
+const bgMusic=document.getElementById("bgMusic");
+function startAmbience(){
+ if(!bgMusic||!bgMusic.getAttribute("src"))return;
+ bgMusic.volume=.35;bgMusic.loop=true;
+ if(soundOn)bgMusic.play().catch(()=>{});
+}
+function setAmbienceMute(muted){
+ if(!bgMusic||!bgMusic.getAttribute("src"))return;
+ if(muted)bgMusic.pause();else bgMusic.play().catch(()=>{});
+}
+function start(){round=0;score=0;correct=0;choice=null;reverse=false;streak=0;startAmbience();show("game");render();}
+function render(){
+ const q=questions[round];choice=null;
+ $("score").textContent=score;$("bar").style.width=((round+1)/questions.length*100)+"%";
+ $("category").textContent=q.category;$("roundLabel").textContent=`LEVEL ${round+1}/${questions.length}`;$("question").textContent=q.q;
+ $("feedback").className="feedback hidden";$("next").classList.add("hidden");$("cards").replaceChildren();$("streak").textContent="";$("streak").className="streak";
+ const opts=reverse?[q.b,q.a]:[q.a,q.b];
+ opts.forEach(p=>{
+  const btn=document.createElement("button");btn.type="button";btn.className="product";btn.style.setProperty("--h",q.h);btn.setAttribute("aria-label","Choose "+p.name);
+  const art=document.createElement("div");art.className="cardart";art.innerHTML=pkg(q.type,q.h);
+  const name=document.createElement("span");name.className="name";name.textContent=p.name;
+  const tap=document.createElement("span");tap.className="tap";tap.textContent="Tap to choose";
+  btn.append(art,name,tap);btn.addEventListener("click",()=>pick(p,btn));$("cards").append(btn);
+ });
+}
+function burstPetals(){
+ const colors=["#7a1f2b","#f4812e","#d6a419","#3f6b3a"];
+ for(let i=0;i<28;i++){const piece=document.createElement("i");piece.className="petal";piece.style.left=(Math.random()*100)+"vw";piece.style.background=colors[i%colors.length];piece.style.animationDelay=(Math.random()*.3)+"s";piece.style.transform="rotate("+(Math.random()*180)+"deg)";document.body.appendChild(piece);setTimeout(()=>piece.remove(),2200);}
+}
+function pick(p,btn){
+ if(choice)return;choice=p;
+ let gained;
+ if(p.sw){streak++;gained=10+(streak>=3?5:0);correct++;sGood();burstPetals();vibrate(30);}
+ else{streak=0;gained=-5;sBad();document.body.classList.remove("flash-bad");void document.body.offsetWidth;document.body.classList.add("flash-bad");vibrate([20,40,20]);}
+ score+=gained;
+ $("score").textContent=score;$("score").classList.remove("score-pop");void $("score").offsetWidth;$("score").classList.add("score-pop");
+ if(streak>=2){const s=$("streak");s.textContent="🪔 "+streak+" Swadeshi streak!"+(streak>=3?" (+5 bonus!)":"");s.className="streak show"}
+ [...$("cards").children].forEach(card=>{const nm=card.querySelector(".name").textContent;const opt=[questions[round].a,questions[round].b].find(x=>x.name===nm);
+  card.disabled=true;
+  if(opt){card.classList.add("selected",opt.sw?"good":"bad");card.querySelector(".tap").textContent=opt.sw?"SWADESHI":"FOREIGN ORIGIN";
+   const o=document.createElement("span");o.className="origin";o.textContent=opt.origin;card.appendChild(o);}
+ });
+ const f=$("feedback");f.className="feedback "+(p.sw?"good":"bad");
+ const h=document.createElement("h3");h.textContent=p.sw?("Swadeshi choice! +"+gained+" points"):"Foreign-origin choice: −5 points";
+ const para=document.createElement("p");para.textContent=p.why;
+ const small=document.createElement("small");small.textContent="Points reflect brand origin, not product quality.";
+ f.replaceChildren(h,para,small);$("next").textContent=round===questions.length-1?"SEE MY RESULT →":"NEXT QUESTION →";$("next").classList.remove("hidden");
+}
+function finish(){
+ score+=10;$("finalScore").textContent=score;$("correctStat").textContent=correct+"/10";$("rateStat").textContent=(correct*10)+"%";
+ $("rank").textContent=correct===10?"Swadeshi Champion!":correct>=7?"Swadeshi Supporter":correct>=4?"Swadeshi Explorer":"Keep Discovering!";
+ const stars=correct>=9?3:correct>=6?2:correct>=3?1:0;
+ [...$("starRow").children].forEach((s,i)=>{s.classList.remove("lit");if(i<stars)setTimeout(()=>s.classList.add("lit"),i*180);});
+ sWin();
+ try{const best=parseInt(localStorage.getItem("sw_best_trad")||"0");if(score>best){localStorage.setItem("sw_best_trad",score);$("bestLine").textContent="🏅 Best score: "+score;$("bestLine").style.display="inline-block";}}catch(e){}
+ show("result");
+}
+$("play").addEventListener("click",start);$("playBottom").addEventListener("click",start);$("again").addEventListener("click",start);$("exit").addEventListener("click",()=>show("intro"));
+$("next").addEventListener("click",()=>{if(round===questions.length-1)finish();else{round++;reverse=!reverse;render();}});
+$("soundBtn").addEventListener("click",()=>{soundOn=!soundOn;$("soundBtn").textContent=soundOn?"🔊":"🔇";try{localStorage.setItem("sw_sound",soundOn?"on":"off")}catch(e){}setAmbienceMute(!soundOn);if(soundOn)tone(880,.08,"square",.1)});
+$("soundBtn").textContent=soundOn?"🔊":"🔇";
+</script>
+</body></html>
