@@ -59,7 +59,7 @@ h1{font-family:"Yatra One",cursive;font-weight:400;font-size:clamp(1.9rem,7vw,3.
 .cardart{position:relative;width:100%;height:clamp(118px,30vw,168px);border-radius:50%;display:grid;place-items:center;padding:10px;
   background:radial-gradient(circle,#fff 55%,hsl(var(--h) 55% 90%) 100%);border:2px dashed var(--gold);transition:transform .25s}
 .cardart:before{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px dotted #d6a41988;animation:spin 20s linear infinite}
-.cardart svg{width:auto;height:84%;max-width:84%;position:relative}
+.cardart svg,.cardart img{width:auto;height:84%;max-width:84%;max-height:84%;object-fit:contain;position:relative;border-radius:6px}
 .product.selected .cardart{transform:scale(1.06)}
 .name{font-size:clamp(.95rem,2.4vw,1.05rem);font-weight:800;color:var(--maroon)}
 .tap{background:var(--bg);color:var(--muted);border-radius:99px;padding:5px 10px;font-weight:700;font-size:.72rem;border:1px solid var(--gold)}
@@ -100,6 +100,7 @@ footer{margin-top:auto;padding-top:10px;text-align:center;color:var(--muted);fon
 .levelribbon{background:var(--maroon);color:var(--gold);font-weight:800;font-size:.78rem;letter-spacing:.06em;padding:8px 14px 8px 10px;border-radius:0 10px 10px 0;position:relative;box-shadow:0 3px 0 var(--deepmaroon)}
 .levelribbon:before{content:"";position:absolute;left:-10px;top:0;border-style:solid;border-width:0 10px 10px 0;border-color:transparent var(--deepmaroon) transparent transparent}
 .scorebox{display:flex;align-items:center;gap:6px}.scorebox .coin{font-size:1.2rem;filter:drop-shadow(0 2px 0 #8a6a12)}
+.coindot{display:inline-block;width:.85em;height:.85em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff6c8,var(--gold) 55%,#9c7a12 100%);border:1px solid #8a6a12;vertical-align:-.1em;box-shadow:0 1px 0 #8a6a1288}
 .catchip{display:inline-block;background:var(--panel);border:2px solid var(--gold);color:var(--maroon);font-weight:800;font-size:.72rem;letter-spacing:.08em;padding:5px 12px;border-radius:99px;margin-top:4px}
 .cardwrap{position:relative}
 .vsbadge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--maroon);color:var(--gold);display:grid;place-items:center;font-weight:800;font-size:.8rem;border:3px solid var(--gold);box-shadow:0 4px 10px rgba(0,0,0,.35);z-index:2;animation:vspulse 1.8s ease-in-out infinite}
@@ -131,7 +132,7 @@ footer{margin-top:auto;padding-top:10px;text-align:center;color:var(--muted);fon
     <p class="sub">Everyday choices. Indian brands. A festive challenge.</p>
     <div class="best" id="bestLine" style="display:none"></div>
     <div class="points">
-      <div class="point"><strong>+10</strong><small>Swadeshi choice</small></div>
+      <div class="point"><strong><i class="coindot" aria-hidden="true"></i> +10</strong><small>Swadeshi choice</small></div>
       <div class="point"><strong>−5</strong><small>Foreign-origin choice</small></div>
     </div>
     <button class="primary" id="play">▶ &nbsp; आरंभ करें · PLAY NOW</button>
@@ -148,7 +149,7 @@ footer{margin-top:auto;padding-top:10px;text-align:center;color:var(--muted);fon
   <div class="hud">
     <div class="levelribbon" id="roundLabel">LEVEL 1/10</div>
     <button class="soundbtn" id="soundBtn" aria-label="Toggle sound">🔊</button>
-    <div class="scorebox"><span class="coin">🪙</span><strong id="score">0</strong></div>
+    <div class="scorebox"><i class="coindot" aria-hidden="true"></i><strong id="score">0</strong></div>
   </div>
   <div class="progress"><div id="bar" class="bar"></div></div>
   <div class="catchip" id="category">DAIRY</div>
@@ -194,21 +195,21 @@ function pkg(type,h){
  return `<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">${shapes[type]||shapes.box}</svg>`;
 }
 const questions = [
- {h:38,type:"tub",q:"Which butter would you prefer to buy?",category:"DAIRY",a:{name:"Amul Butter",sw:true,origin:"🇮🇳 India",why:"Amul is an Indian dairy cooperative brand."},b:{name:"Lurpak Butter",sw:false,origin:"🇩🇰 Denmark",why:"Lurpak is a Danish butter brand."}},
- {h:28,type:"pack",q:"Which biscuits would you pick for your evening tea?",category:"BISCUITS",a:{name:"Parle-G",sw:true,origin:"🇮🇳 India",why:"Parle is an Indian-origin biscuit brand."},b:{name:"Oreo",sw:false,origin:"🇺🇸 USA",why:"Oreo originated in the United States."}},
- {h:200,type:"tube",q:"Which toothpaste would you choose for your family?",category:"PERSONAL CARE",a:{name:"Dabur Red",sw:true,origin:"🇮🇳 India",why:"Dabur is an Indian-origin company."},b:{name:"Colgate",sw:false,origin:"🇺🇸 USA",why:"Colgate is an American-origin brand."}},
- {h:45,type:"pouch",q:"Which snack would you buy for a movie night?",category:"SNACKS",a:{name:"Haldiram's Namkeen",sw:true,origin:"🇮🇳 India",why:"Haldiram's is an Indian-origin snack brand."},b:{name:"Pringles",sw:false,origin:"🇺🇸 USA",why:"Pringles originated in the United States."}},
- {h:150,type:"box",q:"Which tea would you prefer for your morning cup?",category:"BEVERAGES",a:{name:"Tata Tea",sw:true,origin:"🇮🇳 India",why:"Tata Tea is part of India's Tata Consumer Products."},b:{name:"Lipton",sw:false,origin:"🇬🇧 UK",why:"Lipton originated as a British tea brand."}},
- {h:265,type:"speaker",q:"Which speaker would you choose for your next party?",category:"ELECTRONICS",a:{name:"boAt",sw:true,origin:"🇮🇳 India",why:"boAt is an Indian-origin consumer electronics brand."},b:{name:"JBL",sw:false,origin:"🇺🇸 USA",why:"JBL originated in the United States."}},
- {h:30,type:"can",q:"Which paint brand would you consider for your home?",category:"HOME",a:{name:"Asian Paints",sw:true,origin:"🇮🇳 India",why:"Asian Paints is an Indian-origin company."},b:{name:"Dulux",sw:false,origin:"🇳🇱 Netherlands",why:"Dulux is a brand of Dutch-origin AkzoNobel."}},
- {h:340,type:"tag",q:"Which fashion brand would you choose for an outfit?",category:"CLOTHING",a:{name:"Biba",sw:true,origin:"🇮🇳 India",why:"Biba is an Indian-origin fashion brand."},b:{name:"Zara",sw:false,origin:"🇪🇸 Spain",why:"Zara originated in Spain."}},
- {h:18,type:"pot",q:"Which kitchen appliance would you consider for your home?",category:"KITCHEN",a:{name:"Prestige",sw:true,origin:"🇮🇳 India",why:"Prestige is an Indian-origin kitchen appliance brand."},b:{name:"Philips",sw:false,origin:"🇳🇱 Netherlands",why:"Philips originated in the Netherlands."}},
- {h:120,type:"bottle",q:"Which drink would you choose to refresh yourself?",category:"DRINKS",a:{name:"Paper Boat",sw:true,origin:"🇮🇳 India",why:"Paper Boat is an Indian-origin beverage brand."},b:{name:"Coca-Cola",sw:false,origin:"🇺🇸 USA",why:"Coca-Cola originated in the United States."}}
+ {h:38,type:"tub",q:"Which butter would you prefer to buy?",category:"DAIRY",a:{name:"Amul Butter",sw:true,origin:"🇮🇳 India",why:"Amul is an Indian dairy cooperative brand.",img:"assets/amul.jpg"},b:{name:"Lurpak Butter",sw:false,origin:"🇩🇰 Denmark",why:"Lurpak is a Danish butter brand.",img:"assets/lurpak.jpg"}},
+ {h:28,type:"pack",q:"Which biscuits would you pick for your evening tea?",category:"BISCUITS",a:{name:"Parle-G",sw:true,origin:"🇮🇳 India",why:"Parle is an Indian-origin biscuit brand.",img:"assets/parleg.jpg"},b:{name:"Oreo",sw:false,origin:"🇺🇸 USA",why:"Oreo originated in the United States.",img:"assets/oreo.jpg"}},
+ {h:200,type:"tube",q:"Which toothpaste would you choose for your family?",category:"PERSONAL CARE",a:{name:"Dabur Red",sw:true,origin:"🇮🇳 India",why:"Dabur is an Indian-origin company.",img:"assets/dabur.jpg"},b:{name:"Colgate",sw:false,origin:"🇺🇸 USA",why:"Colgate is an American-origin brand.",img:"assets/colgate.jpg"}},
+ {h:45,type:"pouch",q:"Which snack would you buy for a movie night?",category:"SNACKS",a:{name:"Haldiram's Namkeen",sw:true,origin:"🇮🇳 India",why:"Haldiram's is an Indian-origin snack brand.",img:"assets/haldirams.jpg"},b:{name:"Pringles",sw:false,origin:"🇺🇸 USA",why:"Pringles originated in the United States.",img:"assets/pringles.jpg"}},
+ {h:150,type:"box",q:"Which tea would you prefer for your morning cup?",category:"BEVERAGES",a:{name:"Tata Tea",sw:true,origin:"🇮🇳 India",why:"Tata Tea is part of India's Tata Consumer Products.",img:"assets/tatatea.jpg"},b:{name:"Lipton",sw:false,origin:"🇬🇧 UK",why:"Lipton originated as a British tea brand.",img:"assets/lipton.jpg"}},
+ {h:265,type:"speaker",q:"Which speaker would you choose for your next party?",category:"ELECTRONICS",a:{name:"boAt",sw:true,origin:"🇮🇳 India",why:"boAt is an Indian-origin consumer electronics brand.",img:"assets/boat.jpg"},b:{name:"JBL",sw:false,origin:"🇺🇸 USA",why:"JBL originated in the United States.",img:"assets/jbl.jpg"}},
+ {h:30,type:"can",q:"Which paint brand would you consider for your home?",category:"HOME",a:{name:"Asian Paints",sw:true,origin:"🇮🇳 India",why:"Asian Paints is an Indian-origin company.",img:"assets/asianpaints.jpg"},b:{name:"Dulux",sw:false,origin:"🇳🇱 Netherlands",why:"Dulux is a brand of Dutch-origin AkzoNobel.",img:"assets/dulux.jpg"}},
+ {h:340,type:"tag",q:"Which fashion brand would you choose for an outfit?",category:"CLOTHING",a:{name:"Biba",sw:true,origin:"🇮🇳 India",why:"Biba is an Indian-origin fashion brand.",img:"assets/biba.jpg"},b:{name:"Zara",sw:false,origin:"🇪🇸 Spain",why:"Zara originated in Spain.",img:"assets/zara.jpg"}},
+ {h:18,type:"pot",q:"Which kitchen appliance would you consider for your home?",category:"KITCHEN",a:{name:"Prestige",sw:true,origin:"🇮🇳 India",why:"Prestige is an Indian-origin kitchen appliance brand.",img:"assets/prestige.jpg"},b:{name:"Philips",sw:false,origin:"🇳🇱 Netherlands",why:"Philips originated in the Netherlands.",img:"assets/philips.jpg"}},
+ {h:120,type:"bottle",q:"Which drink would you choose to refresh yourself?",category:"DRINKS",a:{name:"Paper Boat",sw:true,origin:"🇮🇳 India",why:"Paper Boat is an Indian-origin beverage brand.",img:"assets/paperboat.jpg"},b:{name:"Coca-Cola",sw:false,origin:"🇺🇸 USA",why:"Coca-Cola originated in the United States.",img:"assets/cocacola.jpg"}}
 ];
 const $=id=>document.getElementById(id);
 let round=0,score=0,correct=0,choice=null,reverse=false,streak=0,soundOn=true,actx=null;
 try{soundOn=localStorage.getItem("sw_sound")!=="off"}catch(e){}
-try{const b=localStorage.getItem("sw_best_trad");if(b){$("bestLine").textContent="🏅 Best score: "+b;$("bestLine").style.display="inline-block";}}catch(e){}
+try{const b=localStorage.getItem("sw_best_trad");if(b){$("bestLine").innerHTML='<i class="coindot" aria-hidden="true"></i> Best score: '+b;$("bestLine").style.display="inline-block";}}catch(e){}
 function ctx(){if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}return actx}
 function tone(freq,dur,type,vol,delay){
   if(!soundOn)return;const c=ctx();if(!c)return;
@@ -246,7 +247,8 @@ function render(){
  const opts=reverse?[q.b,q.a]:[q.a,q.b];
  opts.forEach(p=>{
   const btn=document.createElement("button");btn.type="button";btn.className="product";btn.style.setProperty("--h",q.h);btn.setAttribute("aria-label","Choose "+p.name);
-  const art=document.createElement("div");art.className="cardart";art.innerHTML=pkg(q.type,q.h);
+  const art=document.createElement("div");art.className="cardart";
+  if(p.img){const im=document.createElement("img");im.src=p.img;im.alt=p.name;art.appendChild(im);}else{art.innerHTML=pkg(q.type,q.h);}
   const name=document.createElement("span");name.className="name";name.textContent=p.name;
   const tap=document.createElement("span");tap.className="tap";tap.textContent="Tap to choose";
   btn.append(art,name,tap);btn.addEventListener("click",()=>pick(p,btn));$("cards").append(btn);
@@ -281,7 +283,7 @@ function finish(){
  const stars=correct>=9?3:correct>=6?2:correct>=3?1:0;
  [...$("starRow").children].forEach((s,i)=>{s.classList.remove("lit");if(i<stars)setTimeout(()=>s.classList.add("lit"),i*180);});
  sWin();
- try{const best=parseInt(localStorage.getItem("sw_best_trad")||"0");if(score>best){localStorage.setItem("sw_best_trad",score);$("bestLine").textContent="🏅 Best score: "+score;$("bestLine").style.display="inline-block";}}catch(e){}
+ try{const best=parseInt(localStorage.getItem("sw_best_trad")||"0");if(score>best){localStorage.setItem("sw_best_trad",score);$("bestLine").innerHTML='<i class="coindot" aria-hidden="true"></i> Best score: '+score;$("bestLine").style.display="inline-block";}}catch(e){}
  show("result");
 }
 $("play").addEventListener("click",start);$("playBottom").addEventListener("click",start);$("again").addEventListener("click",start);$("exit").addEventListener("click",()=>show("intro"));
